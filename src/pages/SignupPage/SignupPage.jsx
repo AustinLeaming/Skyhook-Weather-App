@@ -111,7 +111,7 @@ export default function SignUpPage(props) {
                 required
               />
               <select
-                class="ui fluid dropdown"
+                className="ui fluid dropdown"
                 name="location"
                 value={state.location}
                 onChange={handleChange}

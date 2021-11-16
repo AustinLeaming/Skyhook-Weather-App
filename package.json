@@ -20,7 +20,8 @@
     "react-router-dom": "^6.0.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.4",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "weather-icons": "github:erikflowers/weather-icons"
   },
   "devDependencies": {
     "react-scripts": "^4.0.3"

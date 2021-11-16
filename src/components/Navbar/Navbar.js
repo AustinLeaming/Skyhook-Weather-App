@@ -6,7 +6,7 @@ import { SidebarData } from "./SidebarData";
 import "./Navbar.css";
 import { IconContext } from "react-icons";
 
-function Navbar() {
+function Navbar(props) {
   // this declares my state default as false, I don't want the user to see the menu opened at first, only when clicked
   const [sidebar, setSidebar] = useState(false);
 
@@ -25,7 +25,7 @@ function Navbar() {
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items" onClick={showSidebar}>
           <li className="navbar-toggle">
-            <Link to="login" className="menu-bars">
+            <Link to="#" className="menu-bars">
               <AiIcons.AiOutlineClose />
             </Link>
           </li>
@@ -42,6 +42,9 @@ function Navbar() {
               </li>
             );
           })}
+          <li className="nav-text" onClick={props.handleLogout}>
+            <span>Logout</span>
+          </li>
         </ul>
       </nav>
     </>
