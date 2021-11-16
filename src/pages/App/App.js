@@ -10,6 +10,8 @@ function App() {
   const [user, setUser] = useState(userService.getUser());
 
   function handleSignupOrLogin() {
+    // we want to call this function after we signup or login
+    // always be in the handleSubmit of the form
     setUser(userService.getUser());
   }
 

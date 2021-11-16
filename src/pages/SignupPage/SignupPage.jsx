@@ -26,7 +26,7 @@ export default function SignUpPage(props) {
   });
 
   const formRef = useRef();
-  const history = useNavigate();
+  const navigate = useNavigate(); // v.6 update, used to programmitically navigate to other routes
 
   function handleFileInput(e) {
     console.log(e.target.files);
@@ -65,7 +65,7 @@ export default function SignUpPage(props) {
       // the signup request, you need to grab the token from
       // local storage and set the user!
       props.handleSignupOrLogin();
-      history.push("/");
+      navigate("/");
     } catch (err) {
       // Invalid user data (probably duplicate email)
       console.log(err.message);
