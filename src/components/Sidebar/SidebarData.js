@@ -8,7 +8,7 @@ export const SidebarData = [
     title: "Home",
     path: "/",
     icon: <AiIcons.AiFillHome />,
-    cName: "nav-text",
+    cName: "item link",
   },
   {
     title: "Login",
