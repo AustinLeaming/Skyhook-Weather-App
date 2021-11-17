@@ -4,6 +4,7 @@
   display: flex;
   justify-content: start;
   align-items: center;
+  z-index: 9999;
 }
 
 .menu-bars {
@@ -22,6 +23,7 @@
   top: 0;
   left: -100%;
   transition: 850ms;
+  z-index: 9999;
 }
 
 .nav-menu.active {
@@ -69,4 +71,8 @@
 
 span {
   margin-left: 16px;
+}
+
+#searchBar {
+  margin-left: 50px;
 }

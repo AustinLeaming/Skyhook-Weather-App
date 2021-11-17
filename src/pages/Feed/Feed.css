@@ -1,0 +1,32 @@
+i {
+  padding: 10px 10px;
+  font-size: 50px;
+}
+
+.weather-text {
+  margin: 0;
+}
+
+#card-location {
+  font-size: large;
+}
+
+#card-temp {
+  font-size: small;
+  font-style: italic;
+  font-weight: 500;
+}
+
+#card-desc {
+  font-size: small;
+  font-style: italic;
+  font-weight: 500;
+}
+
+#card-content {
+  padding: 10px;
+}
+
+#card-date {
+  margin: 0;
+}

@@ -6,7 +6,7 @@ import { SidebarData } from "./SidebarData";
 import "./Navbar.css";
 import { IconContext } from "react-icons";
 
-function Navbar(props) {
+export default function Navbar(props) {
   // this declares my state default as false, I don't want the user to see the menu opened at first, only when clicked
   const [sidebar, setSidebar] = useState(false);
 
@@ -20,6 +20,13 @@ function Navbar(props) {
         <Link to="#" className="menu-bars">
           <FaIcons.FaBars onClick={showSidebar} />
         </Link>
+        <div class="ui loading search">
+          <div id="searchBar" class="ui icon input">
+            <input class="prompt" type="text" placeholder="Search..." />
+            <i class="search icon"></i>
+          </div>
+          <div class="results"></div>
+        </div>
       </div>
 
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
@@ -50,5 +57,3 @@ function Navbar(props) {
     </>
   );
 }
-
-export default Navbar;
