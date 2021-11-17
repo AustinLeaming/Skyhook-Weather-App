@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./Navbar.css";
 import { IconContext } from "react-icons";
@@ -14,17 +14,20 @@ export default function Navbar({ handleLogout, setData }) {
   // toggles the value when sidebar is clicked
   const showSidebar = () => setSidebar(!sidebar);
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=" +
         searchInput +
-        "&units=metric&APPID=" +
+        "&units=imperial&APPID=" +
         process.env.REACT_APP_API_KEY
     )
       .then((res) => res.json())
       .then((result) => setData(result));
+    navigate("/search");
   };
 
   return (

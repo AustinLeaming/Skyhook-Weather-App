@@ -3,21 +3,22 @@ import { Icon } from "semantic-ui-react";
 import "weather-icons/css/weather-icons.css";
 import "./Feed.css";
 import Navbar from "../../components/Navbar/Navbar";
+import SearchPage from "../SearchPage/SearchPage";
 
 export default function Feed({ handleLogout }) {
   const KEY = process.env.API_KEY;
   const [weather, setWeather] = useState({});
   const [data, setData] = useState({});
 
-  async function getWeather() {
-    const api_call = await fetch(
-      `api.openweathermap.org/data/2.5/weather?q=London&appid=${KEY}`
-    );
-    const response = await api_call.json();
+  // async function getWeather() {
+  //   const api_call = await fetch(
+  //     `api.openweathermap.org/data/2.5/weather?q=London&appid=${KEY}`
+  //   );
+  //   const response = await api_call.json();
 
-    console.log(response);
-    setWeather(response);
-  }
+  //   console.log(response);
+  //   setWeather(response);
+  // }
 
   console.log(data, "data in feed.js");
 
@@ -40,7 +41,7 @@ export default function Feed({ handleLogout }) {
               </span>
               <br />
               <span id="card-temp" class="weather-text">
-                Feels like: {data.main.feels_like}
+                {/* Feels like: {data.main.feels_like} */}
               </span>
               <br />
               <span class="weather-text">54/75</span>

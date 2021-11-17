@@ -6,12 +6,8 @@ import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import Feed from "../Feed/Feed";
 import "weather-icons/css/weather-icons.css";
-import Search from "../../components/Search/Search";
-
-const api = {
-  KEY: process.env.API_KEY,
-  BASE_URL: "https://api.openweathermap.org/data/2.5/",
-};
+import SearchPage from "../SearchPage/SearchPage";
+import Navbar from "../../components/Navbar/Navbar";
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
@@ -31,6 +27,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Feed handleLogout={handleLogout} />} />
         <Route
@@ -41,6 +38,7 @@ function App() {
           path="/signup"
           element={<SignupPage handleSignupOrLogin={handleSignupOrLogin} />}
         />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
     </>
   );
