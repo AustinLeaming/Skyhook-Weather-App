@@ -3,7 +3,6 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
-import Navbar from "../../components/Navbar/Navbar";
 import userService from "../../utils/userService";
 import Feed from "../Feed/Feed";
 import "weather-icons/css/weather-icons.css";
@@ -32,9 +31,8 @@ function App() {
 
   return (
     <>
-      <Navbar handleLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<Feed />} />
+        <Route path="/" element={<Feed handleLogout={handleLogout} />} />
         <Route
           path="/login"
           element={<LoginPage handleSignupOrLogin={handleSignupOrLogin} />}

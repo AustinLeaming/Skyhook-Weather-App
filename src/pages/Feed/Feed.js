@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Icon } from "semantic-ui-react";
 import "weather-icons/css/weather-icons.css";
-import "./Home.css";
+import "./Feed.css";
+import Navbar from "../../components/Navbar/Navbar";
 
-export default function Home() {
+export default function Feed({ handleLogout }) {
   const KEY = process.env.API_KEY;
   const [weather, setWeather] = useState({});
 
@@ -21,6 +22,7 @@ export default function Home() {
 
   return (
     <>
+      <Navbar handleLogout={handleLogout} />
       <div class="ui grid hidden section divider">
         <div class="two wide column"></div>
         <div class="four wide column">
