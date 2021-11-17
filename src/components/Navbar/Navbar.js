@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -6,12 +6,26 @@ import { SidebarData } from "./SidebarData";
 import "./Navbar.css";
 import { IconContext } from "react-icons";
 
-export default function Navbar(props) {
+export default function Navbar({ handleLogout, setData }) {
   // this declares my state default as false, I don't want the user to see the menu opened at first, only when clicked
   const [sidebar, setSidebar] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
 
   // toggles the value when sidebar is clicked
   const showSidebar = () => setSidebar(!sidebar);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    fetch(
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+        searchInput +
+        "&units=metric&APPID=" +
+        process.env.REACT_APP_API_KEY
+    )
+      .then((res) => res.json())
+      .then((result) => setData(result));
+  };
 
   return (
     <>
@@ -22,7 +36,14 @@ export default function Navbar(props) {
         </Link>
         <div class="ui loading search">
           <div id="searchBar" class="ui icon input">
-            <input class="prompt" type="text" placeholder="Search..." />
+            <form onSubmit={handleSubmit}>
+              <input
+                onChange={(e) => [setSearchInput(e.target.value)]}
+                class="prompt"
+                type="text"
+                placeholder="Search..."
+              />
+            </form>
             <i class="search icon"></i>
           </div>
           <div class="results"></div>
@@ -49,7 +70,7 @@ export default function Navbar(props) {
               </li>
             );
           })}
-          <li className="nav-text" onClick={props.handleLogout}>
+          <li className="nav-text" onClick={handleLogout}>
             <span>Logout</span>
           </li>
         </ul>

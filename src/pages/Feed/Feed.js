@@ -7,6 +7,7 @@ import Navbar from "../../components/Navbar/Navbar";
 export default function Feed({ handleLogout }) {
   const KEY = process.env.API_KEY;
   const [weather, setWeather] = useState({});
+  const [data, setData] = useState({});
 
   async function getWeather() {
     const api_call = await fetch(
@@ -18,11 +19,13 @@ export default function Feed({ handleLogout }) {
     setWeather(response);
   }
 
+  console.log(data, "data in feed.js");
+
   // load the users cards on this screen
 
   return (
     <>
-      <Navbar handleLogout={handleLogout} />
+      <Navbar handleLogout={handleLogout} setData={setData} />
       <div class="ui grid hidden section divider">
         <div class="two wide column"></div>
         <div class="four wide column">
@@ -33,11 +36,11 @@ export default function Feed({ handleLogout }) {
               <br />
               {/* the center aligned is messing up the icon and the text being in the center. To fix this, I removed the margins from the text and left the icon alignment alone. */}
               <span id="card-location" class="weather-text">
-                Denver, CO
+                {data.name}
               </span>
               <br />
               <span id="card-temp" class="weather-text">
-                56
+                Feels like: {data.main.feels_like}
               </span>
               <br />
               <span class="weather-text">54/75</span>
