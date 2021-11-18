@@ -5,8 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./Navbar.css";
 import { IconContext } from "react-icons";
+import userService from "../../utils/userService";
 
-export default function Navbar({ handleLogout, setData }) {
+export default function Navbar({ setData, setUser }) {
   // this declares my state default as false, I don't want the user to see the menu opened at first, only when clicked
   const [sidebar, setSidebar] = useState(false);
   const [searchInput, setSearchInput] = useState("");
@@ -16,19 +17,30 @@ export default function Navbar({ handleLogout, setData }) {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=" +
-        searchInput +
-        "&units=imperial&APPID=" +
-        process.env.REACT_APP_API_KEY
-    )
-      .then((res) => res.json())
-      .then((result) => setData(result));
+    try {
+      await fetch(
+        "https://api.openweathermap.org/data/2.5/weather?q=" +
+          searchInput +
+          "&units=imperial&APPID=" +
+          process.env.REACT_APP_API_KEY
+      )
+        .then((res) => res.json())
+        .then((result) => setData(result));
+    } catch (err) {
+      console.log(err);
+    }
+
+    // take the user to the search page
     navigate("/search");
-  };
+  }
+
+  function handleLogout() {
+    setUser(userService.logout());
+    navigate("/login");
+  }
 
   return (
     <>

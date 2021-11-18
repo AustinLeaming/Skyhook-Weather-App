@@ -11,6 +11,7 @@ import Navbar from "../../components/Navbar/Navbar";
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
+  const [data, setData] = useState({});
 
   const navigate = useNavigate();
 
@@ -20,16 +21,13 @@ function App() {
     setUser(userService.getUser());
   }
 
-  function handleLogout() {
-    setUser(userService.logout());
-    navigate("/login");
-  }
+  console.log(data);
 
   return (
     <>
-      <Navbar />
+      <Navbar setUser={setUser} setData={setData} />
       <Routes>
-        <Route path="/" element={<Feed handleLogout={handleLogout} />} />
+        <Route path="/" element={<Feed />} />
         <Route
           path="/login"
           element={<LoginPage handleSignupOrLogin={handleSignupOrLogin} />}
@@ -38,7 +36,7 @@ function App() {
           path="/signup"
           element={<SignupPage handleSignupOrLogin={handleSignupOrLogin} />}
         />
-        <Route path="/search" element={<SearchPage />} />
+        <Route path="/search" element={<SearchPage data={data} />} />
       </Routes>
     </>
   );
