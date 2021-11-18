@@ -24,7 +24,7 @@ export default function Feed({ handleLogout }) {
   return (
     <>
       <div class="ui grid hidden section divider">
-        <div class="one wide column"></div>
+        <div class="two wide column"></div>
         <div class="four wide column">
           <div class="ui card">
             <div id="card-content" class="header center aligned">
@@ -115,7 +115,7 @@ export default function Feed({ handleLogout }) {
             </div>
           </div>
         </div>
-        <div class="one wide column"></div>
+        <div class="two wide column"></div>
       </div>
     </>
   );

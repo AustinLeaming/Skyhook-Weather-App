@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 const cardSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  locations: [],
-  // i need put the info for the card that gets populated from the api info
+  location: String,
 });
 
-module.exports = mongoose.model("Post", postSchema);
+module.exports = mongoose.model("Card", cardSchema);

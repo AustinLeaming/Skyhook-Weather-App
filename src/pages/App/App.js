@@ -21,8 +21,6 @@ function App() {
     setUser(userService.getUser());
   }
 
-  console.log(data);
-
   return (
     <>
       <Navbar setUser={setUser} setData={setData} />

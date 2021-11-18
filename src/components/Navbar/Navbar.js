@@ -6,35 +6,28 @@ import { SidebarData } from "./SidebarData";
 import "./Navbar.css";
 import { IconContext } from "react-icons";
 import userService from "../../utils/userService";
+import * as weatherService from "../../utils/weatherService";
 
 export default function Navbar({ setData, setUser }) {
   // this declares my state default as false, I don't want the user to see the menu opened at first, only when clicked
   const [sidebar, setSidebar] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
-  // toggles the value when sidebar is clicked
-  const showSidebar = () => setSidebar(!sidebar);
-
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  // opens and closes the sidebar
+  const showSidebar = () => setSidebar(!sidebar);
 
+  async function handleWeatherQuerySubmit(e) {
+    e.preventDefault();
     try {
-      await fetch(
-        "https://api.openweathermap.org/data/2.5/weather?q=" +
-          searchInput +
-          "&units=imperial&APPID=" +
-          process.env.REACT_APP_API_KEY
-      )
-        .then((res) => res.json())
-        .then((result) => setData(result));
+      const apiWeatherData = await weatherService.getWeatherData(searchInput);
+      setData(apiWeatherData);
+      console.log(apiWeatherData, "return from open weather api");
+      navigate("/search");
     } catch (err) {
       console.log(err);
     }
-
-    // take the user to the search page
-    navigate("/search");
   }
 
   function handleLogout() {
@@ -51,7 +44,7 @@ export default function Navbar({ setData, setUser }) {
         </Link>
         <div class="ui loading search">
           <div id="searchBar" class="ui icon input">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleWeatherQuerySubmit}>
               <input
                 onChange={(e) => [setSearchInput(e.target.value)]}
                 class="prompt"

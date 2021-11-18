@@ -16,9 +16,4 @@ export const SidebarData = [
     icon: <AiIcons.AiOutlineLogin />,
     cName: "nav-text",
   },
-  {
-    title: "Search",
-    path: "/search",
-    cName: "nav-text",
-  },
 ];
