@@ -1,12 +1,13 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import "./SearchPage.css";
-import date from "date-and-time";
 
 export default function SearchPage({ data }) {
   //   console.log(data, "search page");
 
-  console.log(date);
+  let dateTime = Date(data.sys.sunrise);
+
+  console.log(dateTime);
 
   return (
     <>
@@ -19,7 +20,7 @@ export default function SearchPage({ data }) {
           <p>Feels like: {data.main.feels_like}&deg;</p>
         </div>
         <div id="detail" class="two wide column">
-          <h1>{date}</h1>
+          <h1></h1>
         </div>
         <div id="detail" class="six wide column"></div>
         <div id="detail" class="two wide column"></div>
