@@ -1,25 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Icon } from "semantic-ui-react";
 import "weather-icons/css/weather-icons.css";
 import "./Feed.css";
 import Navbar from "../../components/Navbar/Navbar";
 import SearchPage from "../SearchPage/SearchPage";
+import * as weatherService from "../../utils/weatherService";
 
 export default function Feed({ handleLogout }) {
   const KEY = process.env.API_KEY;
   const [weather, setWeather] = useState({});
+  const [posts, setPosts] = useState([]);
+  const [error, setError] = useState("");
 
-  // async function getWeather() {
-  //   const api_call = await fetch(
-  //     `api.openweathermap.org/data/2.5/weather?q=London&appid=${KEY}`
-  //   );
-  //   const response = await api_call.json();
+  async function getPosts() {
+    try {
+      const data = await weatherService.getAll();
+      console.log(data);
+      // setPosts([...data.posts]);
+    } catch (err) {
+      setError(err.message);
+      console.log(err, " this is the error");
+    }
+  }
 
-  //   console.log(response);
-  //   setWeather(response);
-  // }
-
-  // load the users cards on this screen
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   return (
     <>
@@ -33,7 +39,7 @@ export default function Feed({ handleLogout }) {
               <br />
               {/* the center aligned is messing up the icon and the text being in the center. To fix this, I removed the margins from the text and left the icon alignment alone. */}
               <span id="card-location" class="weather-text">
-                location
+                {posts}
               </span>
               <br />
               <span id="card-temp" class="weather-text">
