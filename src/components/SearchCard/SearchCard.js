@@ -2,7 +2,15 @@ import React from "react";
 import * as weatherService from "../../utils/weatherService";
 
 export default function SearchCard({ data }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const weatherLocation = data.name;
+
+    weatherService.addWeatherDataToUser(weatherLocation);
+  };
   let icon = "wi wi-owm-" + data.weather[0].id;
+
   return (
     <div class="ui grid hidden section divider">
       <div class="one wide column"></div>
@@ -47,9 +55,7 @@ export default function SearchCard({ data }) {
           </tbody>
         </table>
         <form>
-          <button
-            onClick={weatherService.addWeatherDataToUser(data.name)}
-          ></button>
+          <button onClick={handleSubmit}></button>
         </form>
       </div>
       <div class="one wide column"></div>

@@ -5,7 +5,7 @@ module.exports = {
 };
 
 async function saveCardData(req, res) {
-  console.log("save card in the controller function hit");
+  console.log(req.body, "<-- req.body");
   // const card = new Card(req.body);
   // card.user = req.user._id
   // card.save(function(err) {
