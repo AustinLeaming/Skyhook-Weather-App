@@ -36,7 +36,7 @@ export function addWeatherDataToUser(city) {
 }
 
 export function getAll() {
-  console.log("getAll function hit");
+  // console.log("getAll function hit");
   return fetch(BASE_URL, {
     headers: {
       Authorization: "Bearer " + tokenService.getToken(),

@@ -11,5 +11,5 @@ export default function Search(query) {
   fetch(`${api.BASE_URL}weather?q=${query}&units=metric&APPID=${api.KEY}`)
     .then((res) => res.json())
     .then((result) => setWeather(result));
-  console.log(weather);
+  console.log(weather, "weather from searchBox.js");
 }

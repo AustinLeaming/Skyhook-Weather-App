@@ -19,14 +19,18 @@ async function saveCardData(req, res) {
 }
 
 async function index(req, res) {
-  console.log(req, "req in card controller");
   try {
     const cards = await Card.find({ user: req.user._id })
       .populate("user")
       .exec();
+    console.log(cards, "cards in index function");
     res.status(200).json({ cards: cards });
   } catch (err) {
     console.log(err);
     res.status(400).json({ err });
   }
+}
+
+async function removeCardData(req, res) {
+  console.log("remove card data controller hit");
 }
