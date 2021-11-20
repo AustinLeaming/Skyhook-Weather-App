@@ -31,7 +31,7 @@ export default function WeatherCard({ location }) {
 
   const apiData = queryApi(location);
 
-  if (!apiData) {
+  if (apiData.length === 0) {
     return <>loading</>;
   }
 

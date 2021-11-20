@@ -5,7 +5,7 @@ import * as weatherService from "../../utils/weatherService";
 import WeatherCard from "../../components/WeatherCard/WeatherCard";
 
 export default function Feed() {
-  const [weather, setWeather] = useState({});
+  const [weather, setWeather] = useState([]);
   const [weatherCardData, setWeatherCardData] = useState([]);
   const [error, setError] = useState("");
 
@@ -19,10 +19,22 @@ export default function Feed() {
       console.log(err, " this is the error");
     }
   }
+  function getData() {
+    console.log("get data called");
+  }
+
+  // function getData() {
+  //   weatherCardData.location.forEach(async function (i) {
+  //     setWeather(weather.push("i"));
+  //   });
+
+  //   console.log(weather, "this is weather");
+  // }
 
   useEffect(() => {
     if (weatherCardData.length === 0) {
       getCards();
+      getData();
     }
   }, [weatherCardData]);
 
