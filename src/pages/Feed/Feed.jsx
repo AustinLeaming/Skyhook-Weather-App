@@ -23,18 +23,9 @@ export default function Feed() {
     console.log("get data called");
   }
 
-  // function getData() {
-  //   weatherCardData.location.forEach(async function (i) {
-  //     setWeather(weather.push("i"));
-  //   });
-
-  //   console.log(weather, "this is weather");
-  // }
-
   useEffect(() => {
     if (weatherCardData.length === 0) {
       getCards();
-      getData();
     }
   }, [weatherCardData]);
 

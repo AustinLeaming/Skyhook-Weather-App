@@ -1,24 +1,9 @@
 import React from "react";
-import { Card, Loader, Dimmer, Segment, Image, Icon } from "semantic-ui-react";
+import { Card, Loader, Grid, Segment, Image, Icon } from "semantic-ui-react";
 import "weather-icons/css/weather-icons.css";
 import * as weatherService from "../../utils/weatherService";
 
 export default function WeatherCard({ location }) {
-  // async function populateWeatherData(e) {
-  //   e.preventDefault();
-  //   try {
-  //     const weatherDataFromApi = await weatherService.getWeatherData(
-  //       weatherCardData
-  //     );
-  //     console.log(weatherCardData);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
-  // let icon = "wi wi-owm-" + location.weather[0].id;
-
-  // console.log(location);
   async function queryApi(i) {
     try {
       const forecast = await weatherService.getWeatherData(i);
@@ -29,33 +14,12 @@ export default function WeatherCard({ location }) {
     }
   }
 
-  const apiData = queryApi(location);
-
-  if (apiData.length === 0) {
-    return <>loading</>;
-  }
+  queryApi(location);
 
   return (
     <>
       <div class="ui grid hidden section divider">
-        <Card>
-          <Image wrapped ui={false} />
-          <Card.Content>
-            <Card.Header>{location}</Card.Header>
-            <Card.Meta>
-              <span className="date"></span>
-            </Card.Meta>
-            <Card.Description>
-              Matthew is a musician living in Nashville.
-            </Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <a>
-              {/* < name="user" />
-              22 Friends */}
-            </a>
-          </Card.Content>
-        </Card>
+        <h1>{location}</h1>
       </div>
     </>
   );
