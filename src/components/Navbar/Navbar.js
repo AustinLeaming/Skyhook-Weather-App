@@ -7,7 +7,7 @@ import "./Navbar.css";
 import { IconContext } from "react-icons";
 import userService from "../../utils/userService";
 import * as weatherService from "../../utils/weatherService";
-import { Input } from "semantic-ui-react";
+import { Input, Grid } from "semantic-ui-react";
 
 export default function Navbar({ setData, setUser }) {
   // this declares my state default as false, I don't want the user to see the menu opened at first, only when clicked
@@ -40,23 +40,31 @@ export default function Navbar({ setData, setUser }) {
     <>
       <IconContext.Provider value={{ color: "white" }} />
       <div className="navbar">
-        <Link to="#" className="menu-bars">
-          <FaIcons.FaBars onClick={showSidebar} />
-        </Link>
-        <div class="ui loading search">
-          <div id="searchBar" class="ui icon input">
-            <form onSubmit={handleWeatherQuerySubmit}>
-              <Input
-                size="large"
-                onChange={(e) => [setSearchInput(e.target.value)]}
-                class="prompt"
-                type="text"
-                placeholder="Enter City"
-              />
-            </form>
-          </div>
-          <div class="results"></div>
-        </div>
+        <Grid columns={3}>
+          <Grid.Row>
+            <Grid.Column>
+              <Link to="#" className="menu-bars">
+                <FaIcons.FaBars onClick={showSidebar} />
+              </Link>
+            </Grid.Column>
+            <Grid.Column>
+              <div class="ui loading search">
+                <div id="searchBar" class="ui icon input">
+                  <form onSubmit={handleWeatherQuerySubmit}>
+                    <Input
+                      size="large"
+                      onChange={(e) => [setSearchInput(e.target.value)]}
+                      class="prompt"
+                      type="text"
+                      placeholder="Enter City"
+                    />
+                  </form>
+                </div>
+                <div class="results"></div>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </div>
 
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>

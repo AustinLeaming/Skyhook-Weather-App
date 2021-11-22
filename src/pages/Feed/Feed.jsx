@@ -30,6 +30,15 @@ export default function Feed() {
     return <>loading</>;
   }
 
+  async function removeCard(cardId) {
+    try {
+      const data = await weatherService.removeCard(cardId);
+      console.log(data, "this is data response from removeCard API");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <Grid centered>
       <Grid.Row>
@@ -41,6 +50,7 @@ export default function Feed() {
                   weatherCardData={weatherCardData[i]._id}
                   location={location}
                   key={location}
+                  removeCard={removeCard}
                 />
               );
             })}

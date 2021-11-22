@@ -33,5 +33,13 @@ async function index(req, res) {
 }
 
 async function removeCardData(req, res) {
-  console.log("remove card data controller hit");
+  try {
+    const card = await Card.findOne({ "card._id": req.params.id });
+    card.remove(req.params.id);
+    await card.save();
+    res.json({ data: "card removed" });
+    console.log("remove card data controller hit");
+  } catch (err) {
+    res.status(400).json({ err });
+  }
 }

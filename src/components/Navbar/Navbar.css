@@ -1,6 +1,6 @@
 .navbar {
   background-color: #96c3ec;
-  height: 80px;
+  height: 90px;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -72,8 +72,4 @@
 
 span {
   margin-left: 16px;
-}
-
-#searchBar {
-  margin-left: 50px;
 }
