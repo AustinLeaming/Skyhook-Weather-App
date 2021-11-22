@@ -33,10 +33,16 @@ export default function Feed() {
   return (
     <Grid centered>
       <Grid.Row>
-        <Grid.Column style={{ maxWidth: 900 }}>
+        <Grid.Column style={{ maxWidth: 1100 }}>
           <Card.Group itemsPerRow={3} stackable>
             {weatherCardData.map(({ location }, i) => {
-              return <WeatherCard location={location} key={i} />;
+              return (
+                <WeatherCard
+                  weatherCardData={weatherCardData[i]._id}
+                  location={location}
+                  key={location}
+                />
+              );
             })}
           </Card.Group>
         </Grid.Column>

@@ -13,7 +13,7 @@ import "weather-icons/css/weather-icons.css";
 import * as weatherService from "../../utils/weatherService";
 import "./WeatherCard";
 
-export default function WeatherCard({ location }) {
+export default function WeatherCard({ location, weatherCardData, key }) {
   const [loading, setLoading] = useState(true);
   const [forecast, setForecast] = useState({});
   const [cityName, setCityName] = useState("");
@@ -48,7 +48,9 @@ export default function WeatherCard({ location }) {
     queryApi(location);
   }
 
-  console.log(icon, "this is icon");
+  function removeCard() {
+    console.log(weatherCardData);
+  }
 
   return (
     <Card raised>
@@ -113,7 +115,7 @@ export default function WeatherCard({ location }) {
           Details
         </Button>
         {/* delete this card */}
-        <Button inverted color="red">
+        <Button inverted color="red" onClick={removeCard}>
           Delete
         </Button>
       </Card.Content>
