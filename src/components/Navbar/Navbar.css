@@ -5,6 +5,7 @@
   justify-content: start;
   align-items: center;
   z-index: 9999;
+  margin-bottom: 30px;
 }
 
 .menu-bars {

@@ -3,6 +3,7 @@ const Card = require("../models/card");
 module.exports = {
   saveCardData,
   index,
+  removeCardData,
 };
 
 async function saveCardData(req, res) {

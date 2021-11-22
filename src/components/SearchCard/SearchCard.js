@@ -55,7 +55,7 @@ export default function SearchCard({ data }) {
           </tbody>
         </table>
         <form>
-          <button onClick={handleSubmit}></button>
+          <button onClick={handleSubmit}>Add To Home</button>
         </form>
       </div>
       <div class="one wide column"></div>

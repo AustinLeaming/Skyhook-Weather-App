@@ -3,9 +3,9 @@ import "weather-icons/css/weather-icons.css";
 import "./Feed.css";
 import * as weatherService from "../../utils/weatherService";
 import WeatherCard from "../../components/WeatherCard/WeatherCard";
+import { Card, Loader, Grid, Segment, Image, Icon } from "semantic-ui-react";
 
 export default function Feed() {
-  const [weather, setWeather] = useState([]);
   const [weatherCardData, setWeatherCardData] = useState([]);
   const [error, setError] = useState("");
 
@@ -19,9 +19,6 @@ export default function Feed() {
       console.log(err, " this is the error");
     }
   }
-  function getData() {
-    console.log("get data called");
-  }
 
   useEffect(() => {
     if (weatherCardData.length === 0) {
@@ -33,7 +30,17 @@ export default function Feed() {
     return <>loading</>;
   }
 
-  return weatherCardData.map(({ location }, i) => (
-    <WeatherCard location={location} key={i} />
-  ));
+  return (
+    <Grid centered>
+      <Grid.Row>
+        <Grid.Column style={{ maxWidth: 900 }}>
+          <Card.Group itemsPerRow={3} stackable>
+            {weatherCardData.map(({ location }, i) => {
+              return <WeatherCard location={location} key={i} />;
+            })}
+          </Card.Group>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  );
 }

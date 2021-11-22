@@ -47,3 +47,15 @@ export function getAll() {
     throw new Error("bad Credentials");
   });
 }
+
+export function removeCard(id) {
+  return fetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + tokenService.getToken(),
+    },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error("Login to remove this card");
+  });
+}

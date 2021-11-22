@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import "./Navbar.css";
 import { IconContext } from "react-icons";
 import userService from "../../utils/userService";
 import * as weatherService from "../../utils/weatherService";
+import { Input } from "semantic-ui-react";
 
 export default function Navbar({ setData, setUser }) {
   // this declares my state default as false, I don't want the user to see the menu opened at first, only when clicked
@@ -45,14 +46,14 @@ export default function Navbar({ setData, setUser }) {
         <div class="ui loading search">
           <div id="searchBar" class="ui icon input">
             <form onSubmit={handleWeatherQuerySubmit}>
-              <input
+              <Input
+                size="large"
                 onChange={(e) => [setSearchInput(e.target.value)]}
                 class="prompt"
                 type="text"
-                placeholder="Search..."
+                placeholder="Enter City"
               />
             </form>
-            <i class="search icon"></i>
           </div>
           <div class="results"></div>
         </div>
@@ -67,7 +68,6 @@ export default function Navbar({ setData, setUser }) {
           </li>
 
           {/* links are defined in SidebarData.js */}
-
           {SidebarData.map((item, index) => {
             return (
               <li key={index} className={item.cName}>
@@ -79,7 +79,7 @@ export default function Navbar({ setData, setUser }) {
             );
           })}
           <li className="nav-text" onClick={handleLogout}>
-            <span>Logout</span>
+            <a>Logout</a>
           </li>
         </ul>
       </nav>
