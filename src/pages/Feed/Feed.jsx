@@ -43,9 +43,10 @@ export default function Feed() {
 
   async function removeCard(cardId) {
     try {
-      console.log(cardId);
+      console.log(cardId, "--- cardId to remove");
       const data = await weatherService.removeCard(cardId);
       console.log(data, "this is data response from removeCard API");
+      getCards();
     } catch (err) {
       console.log(err, "err in remove card");
     }

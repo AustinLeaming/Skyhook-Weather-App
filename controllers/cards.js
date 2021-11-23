@@ -42,14 +42,8 @@ async function removeCardData(req, res) {
       } else {
         console.log(card);
       }
+      res.json({ data: "card removed" });
     });
-
-    // const card = await Card.findOne({ "card._id": req.params.id });
-    // console.log(card, "--- removed");
-    // card.remove(req.params.id);
-    // await card.save();
-    // res.json({ data: "card removed" });
-    // console.log("remove card data controller hit");
   } catch (err) {
     res.status(400).json({ err });
   }
