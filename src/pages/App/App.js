@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-      <Navbar setUser={setUser} setData={setData} />
+      <Navbar setUser={setUser} setData={setData} user={user} />
       <Routes>
         <Route path="/" element={<Feed />} />
         <Route

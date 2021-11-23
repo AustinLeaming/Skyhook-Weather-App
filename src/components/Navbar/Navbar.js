@@ -7,7 +7,7 @@ import "./Navbar.css";
 import { IconContext } from "react-icons";
 import userService from "../../utils/userService";
 import * as weatherService from "../../utils/weatherService";
-import { Input, Grid } from "semantic-ui-react";
+import { Input, Grid, Image } from "semantic-ui-react";
 
 export default function Navbar({ setData, setUser, user }) {
   // this declares my state default as false, I don't want the user to see the menu opened at first, only when clicked
@@ -40,14 +40,25 @@ export default function Navbar({ setData, setUser, user }) {
     <>
       <IconContext.Provider value={{ color: "white" }} />
       <div className="navbar">
-        <Grid columns={3}>
+        <Grid>
           <Grid.Row>
-            <Grid.Column>
+            <Grid.Column width={2}>
               <Link to="#" className="menu-bars">
                 <FaIcons.FaBars onClick={showSidebar} />
               </Link>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column width={2}>
+              {user ? (
+                <>
+                  <Image src={user.photoUrl} avatar />
+                  <span>{user.username}</span>
+                  <span>from: {user.location}</span>
+                </>
+              ) : (
+                ""
+              )}
+            </Grid.Column>
+            <Grid.Column width={12}>
               <div class="ui loading search">
                 <div id="searchBar" class="ui icon input">
                   <form onSubmit={handleWeatherQuerySubmit}>
@@ -62,9 +73,6 @@ export default function Navbar({ setData, setUser, user }) {
                 </div>
                 <div class="results"></div>
               </div>
-            </Grid.Column>
-            <Grid.Column>
-              <h1>{user}</h1>
             </Grid.Column>
           </Grid.Row>
         </Grid>
