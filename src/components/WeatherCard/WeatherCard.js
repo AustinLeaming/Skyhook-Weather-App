@@ -115,8 +115,6 @@ export default function WeatherCard({
         </Table>
       </Card.Content>
       <Card.Content extra>
-        {/* do a link to the details of this card */}
-        <Button color="blue">Details</Button>
         {/* delete this card */}
         <Button color="red" onClick={clickHandler}>
           Delete

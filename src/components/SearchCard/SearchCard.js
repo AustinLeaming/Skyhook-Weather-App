@@ -1,16 +1,6 @@
 import React from "react";
 import * as weatherService from "../../utils/weatherService";
-import {
-  Grid,
-  Card,
-  Loader,
-  Dimmer,
-  Segment,
-  Image,
-  Button,
-  Table,
-  Header,
-} from "semantic-ui-react";
+import { Grid, Card, Image, Button, Table, Header } from "semantic-ui-react";
 
 export default function SearchCard({ data }) {
   const handleSubmit = (e) => {
@@ -80,7 +70,6 @@ export default function SearchCard({ data }) {
               </Card.Content>
             </Card>
           </Grid.Column>
-          <Grid.Column width={11}></Grid.Column>
         </Grid.Row>
       </Grid>
     </>
