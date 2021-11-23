@@ -9,7 +9,7 @@ import userService from "../../utils/userService";
 import * as weatherService from "../../utils/weatherService";
 import { Input, Grid } from "semantic-ui-react";
 
-export default function Navbar({ setData, setUser }) {
+export default function Navbar({ setData, setUser, user }) {
   // this declares my state default as false, I don't want the user to see the menu opened at first, only when clicked
   const [sidebar, setSidebar] = useState(false);
   const [searchInput, setSearchInput] = useState("");
@@ -62,6 +62,9 @@ export default function Navbar({ setData, setUser }) {
                 </div>
                 <div class="results"></div>
               </div>
+            </Grid.Column>
+            <Grid.Column>
+              <h1>{user}</h1>
             </Grid.Column>
           </Grid.Row>
         </Grid>

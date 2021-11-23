@@ -13,7 +13,11 @@ import "weather-icons/css/weather-icons.css";
 import * as weatherService from "../../utils/weatherService";
 import "./WeatherCard";
 
-export default function WeatherCard({ location, removeCard, weatherCardData }) {
+export default function WeatherCard({
+  location,
+  removeCard,
+  weatherCardDataId,
+}) {
   const [loading, setLoading] = useState(true);
   const [forecast, setForecast] = useState({});
   const [cityName, setCityName] = useState("");
@@ -24,6 +28,10 @@ export default function WeatherCard({ location, removeCard, weatherCardData }) {
   const [windDeg, setWindDeg] = useState("");
   const [windSpeed, setWindSpeed] = useState("");
   const [icon, setIcon] = useState("");
+
+  function clickHandler() {
+    removeCard(weatherCardDataId);
+  }
 
   async function queryApi(city) {
     console.log(city, "this is city");
@@ -40,12 +48,13 @@ export default function WeatherCard({ location, removeCard, weatherCardData }) {
       setWindSpeed(data.wind.speed);
       setIcon("wi wi-owm-" + data.weather[0].id);
     } catch (err) {
-      console.log(err);
+      console.log(err, "err in queryApi");
     }
   }
 
   if (loading === true) {
     queryApi(location);
+    console.log("searching --- ", location);
   }
 
   return (
@@ -107,11 +116,9 @@ export default function WeatherCard({ location, removeCard, weatherCardData }) {
       </Card.Content>
       <Card.Content extra>
         {/* do a link to the details of this card */}
-        <Button inverted color="blue">
-          Details
-        </Button>
+        <Button color="blue">Details</Button>
         {/* delete this card */}
-        <Button inverted color="red" onClick={removeCard(weatherCardData)}>
+        <Button color="red" onClick={clickHandler}>
           Delete
         </Button>
       </Card.Content>

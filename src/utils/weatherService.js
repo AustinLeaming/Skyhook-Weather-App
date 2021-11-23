@@ -4,7 +4,7 @@ import tokenService from "./tokenService";
 const BASE_URL = "/api/cards";
 
 export async function getWeatherData(query) {
-  console.log(query, "<- getWeatherDAta");
+  console.log(query, "--- getting weather data on this city");
   try {
     return fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -19,9 +19,8 @@ export async function getWeatherData(query) {
 }
 
 export function addWeatherDataToUser(city) {
-  console.log(city, " in weather service ");
+  console.log(city, "--- adding city to the user model");
   return fetch(`${BASE_URL}`, {
-    // I receive an empty object in req.body when this function gets called
     method: "POST",
     headers: {
       Authorization: "Bearer " + tokenService.getToken(),
@@ -36,7 +35,6 @@ export function addWeatherDataToUser(city) {
 }
 
 export function getAll() {
-  // console.log("getAll function hit");
   return fetch(BASE_URL, {
     headers: {
       Authorization: "Bearer " + tokenService.getToken(),

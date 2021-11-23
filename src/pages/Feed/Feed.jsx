@@ -3,16 +3,19 @@ import "weather-icons/css/weather-icons.css";
 import "./Feed.css";
 import * as weatherService from "../../utils/weatherService";
 import WeatherCard from "../../components/WeatherCard/WeatherCard";
-import { Card, Loader, Grid, Segment, Image, Icon } from "semantic-ui-react";
+import { Card, Grid } from "semantic-ui-react";
+import WeatherFeed from "../../components/WeatherFeed/WeatherFeed";
 
 export default function Feed() {
   const [weatherCardData, setWeatherCardData] = useState([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   async function getCards() {
     try {
       const weatherData = await weatherService.getAll();
-      console.log(weatherData, "this is weatherData");
+      console.log(weatherData, "--- weatherData return from the getAll call");
+      setLoading(false);
       setWeatherCardData(weatherData.cards);
     } catch (err) {
       setError(err.message);
@@ -20,9 +23,17 @@ export default function Feed() {
     }
   }
 
+  async function checkStatus() {
+    if (loading === true && weatherCardData.length === 0) {
+      console.log("--- checking for cards");
+      getCards();
+    } else if (loading === false && weatherCardData.length === 0) {
+    }
+  }
+
   useEffect(() => {
     if (weatherCardData.length === 0) {
-      getCards();
+      checkStatus();
     }
   }, [weatherCardData]);
 
@@ -32,10 +43,11 @@ export default function Feed() {
 
   async function removeCard(cardId) {
     try {
+      console.log(cardId);
       const data = await weatherService.removeCard(cardId);
       console.log(data, "this is data response from removeCard API");
     } catch (err) {
-      console.log(err);
+      console.log(err, "err in remove card");
     }
   }
 
@@ -43,18 +55,11 @@ export default function Feed() {
     <Grid centered>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 1100 }}>
-          <Card.Group itemsPerRow={3} stackable>
-            {weatherCardData.map(({ location }, i) => {
-              return (
-                <WeatherCard
-                  weatherCardData={weatherCardData[i]._id}
-                  location={location}
-                  key={location}
-                  removeCard={removeCard}
-                />
-              );
-            })}
-          </Card.Group>
+          <WeatherFeed
+            removeCard={removeCard}
+            weatherCardData={weatherCardData}
+            loading={loading}
+          />
         </Grid.Column>
       </Grid.Row>
     </Grid>
